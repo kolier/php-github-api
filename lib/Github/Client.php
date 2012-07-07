@@ -301,6 +301,20 @@ class Github_Client
     }
 
     /**
+     * Get the event API
+     *
+     * @return  Github_Api_Event  the event API
+     */
+    public function getEventApi()
+    {
+        if (!isset($this->apis['event'])) {
+            $this->apis['event'] = new Github_Api_Event($this);
+        }
+
+        return $this->apis['event'];
+    }
+
+    /**
      * Inject an API instance
      *
      * @param   string                $name the API name
