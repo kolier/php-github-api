@@ -1,3 +1,5 @@
+Improve to be compatible with GitHub API V3.
+
 # PHP GitHub API
 
 A simple Object Oriented wrapper for GitHub API, written with PHP5. 
