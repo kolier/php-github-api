@@ -40,6 +40,31 @@ class Github_Api_Commit extends Github_Api
     {
         throw new Github_Api_Exception(__METHOD__ . ' not supported in GitHub v3 API');
     }
+    
+    /**
+     * Show a specific commit
+     * http://developer.github.com/v3/git/commits/
+     *
+     * @param   string  $username         the username
+     * @param   string  $repo             the repo
+     * @param   (Optional) string  $sha   the commit sha / the branch to start listing commits from
+     * @param   (Optional) string  $path  Only commits containing this file path will be returned
+     * @return array
+     */
+    public function getCommits($username, $repo, $sha = null, $path = null)
+    {
+        $params = array();
+        if(isset($sha)) {
+          $params['sha'] = $sha;
+        }
+        if(isset($path)) {
+          $params['path'] = $path;
+        }
+        
+        $response = $this->get('repos/'.urlencode($username).'/'.urlencode($repo).'/commits', $params);
+
+        return $response;
+    }
 
     /**
      * Show a specific commit
