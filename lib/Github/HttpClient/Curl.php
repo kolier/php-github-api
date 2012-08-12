@@ -22,7 +22,10 @@ class Github_HttpClient_Curl extends Github_HttpClient
     {
         $curlOptions = array();
 
-        if ($options['login'] || $options['auth_method'] == Github_Client::OAUTH_ACCESS_TOKEN) {
+        if (
+            $options['login']
+            || (isset($options['auth_method']) && $options['auth_method'] == Github_Client::OAUTH_ACCESS_TOKEN)
+        ) {
             switch ($options['auth_method']) {
                 case Github_Client::AUTH_HTTP_PASSWORD:
                     $curlOptions += array(
